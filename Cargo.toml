@@ -1,3 +1,6 @@
 [workspace]
-members = ["work/*"]
+members = [
+    "work/*",
+    "kani-tutorial/*",
+]
 resolver = "2"
