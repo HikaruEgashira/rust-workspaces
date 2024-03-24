@@ -2,6 +2,10 @@
 fn simple_addition(a: u32, b: u32) -> u32 {
     return a + b;
 }
+// /fix Failed Checks: attempt to add with overflow
+// fn simple_addition(a: u32, b: u32) -> Option<u32> {
+//     return a.checked_add(b);
+// }
 
 #[cfg(test)]
 mod tests {
