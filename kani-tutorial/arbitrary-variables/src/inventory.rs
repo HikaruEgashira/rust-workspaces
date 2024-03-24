@@ -28,7 +28,9 @@ mod verification {
             inner: VecMap::new(),
         };
 
+        // ProductIdはu32なので、任意の値を取得できる
         let id: ProductId = kani::any();
+        // NonZeroU32は内部的にu32を持つが、0になることはない
         let quantity: NonZeroU32 = kani::any();
         assert!(
             quantity.get() != 0,

@@ -1,3 +1,4 @@
+#![allow(unused_imports)]
 use crate::inventory::*;
 use std::num::NonZeroU32;
 use vector_map::VecMap;
