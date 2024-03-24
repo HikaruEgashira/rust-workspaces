@@ -21,6 +21,14 @@ fn check_initialize_prefix() {
 
     initialize_prefix(length, &mut buffer);
 }
+#[test]
+fn kani_concrete_playback_check_initialize_prefix_13918637217118803650() {
+    let concrete_vals: Vec<Vec<u8>> = vec![
+        // 10ul
+        vec![10, 0, 0, 0, 0, 0, 0, 0],
+    ];
+    kani::concrete_playback_run(concrete_vals, check_initialize_prefix);
+}
 
 // kani::unwind(1)
 // Failed Checks: unwinding assertion loop 0

@@ -28,6 +28,14 @@ fn check_estimate_size() {
     let x: u32 = kani::any();
     estimate_size(x);
 }
+#[test]
+fn kani_concrete_playback_check_estimate_size_14615086421508420155() {
+    let concrete_vals: Vec<Vec<u8>> = vec![
+        // 1023
+        vec![255, 3, 0, 0],
+    ];
+    kani::concrete_playback_run(concrete_vals, check_estimate_size);
+}
 
 #[cfg(test)]
 mod tests {

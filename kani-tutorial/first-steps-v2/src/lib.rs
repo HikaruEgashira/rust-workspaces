@@ -57,3 +57,11 @@ fn will_fail() {
     let x: u32 = kani::any();
     let y = estimate_size(x);
 }
+#[test]
+fn kani_concrete_playback_will_fail_14715535830925848214() {
+    let concrete_vals: Vec<Vec<u8>> = vec![
+        // 4294967295
+        vec![255, 255, 255, 255],
+    ];
+    kani::concrete_playback_run(concrete_vals, will_fail);
+}

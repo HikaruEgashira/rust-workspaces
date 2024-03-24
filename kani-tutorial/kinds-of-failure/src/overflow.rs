@@ -27,3 +27,13 @@ fn add_overflow() {
     let b: u32 = kani::any();
     simple_addition(a, b);
 }
+#[test]
+fn kani_concrete_playback_add_overflow_16563772766055103414() {
+    let concrete_vals: Vec<Vec<u8>> = vec![
+        // 4294967295
+        vec![255, 255, 255, 255],
+        // 4294967295
+        vec![255, 255, 255, 255],
+    ];
+    kani::concrete_playback_run(concrete_vals, add_overflow);
+}
