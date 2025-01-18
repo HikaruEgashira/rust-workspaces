@@ -8,24 +8,22 @@ const STACK_GRAPH_RULES: &str = r#"
 (module) @__tsg__full_match {
     node scope_node
     attr (scope_node) type = "scope"
-    attr (scope_node) is_definition
 }
 
 (import_statement name: (dotted_name) @name) {
     node scope_node
     attr (scope_node) type = "scope"
-    attr (scope_node) is_definition
 
     node import_ref
     attr (import_ref) type = "pop_symbol"
     attr (import_ref) symbol = (source-text @name)
+    attr (import_ref) is_definition
     edge scope_node -> import_ref
 }
 
 (attribute object: (identifier) @obj attribute: (identifier) @attr) {
     node scope_node
     attr (scope_node) type = "scope"
-    attr (scope_node) is_definition
 
     node ref_node
     attr (ref_node) type = "push_symbol"
