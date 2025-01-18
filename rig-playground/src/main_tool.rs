@@ -1,52 +1,8 @@
 use anyhow::Result;
-use rig::{
-    completion::{Prompt, ToolDefinition},
-    providers::openai,
-    tool::Tool,
-};
-use serde::{Deserialize, Serialize};
-use serde_json::json;
+use rig::{completion::Prompt, providers::openai};
 
-#[derive(Debug, thiserror::Error)]
-#[error("String length error")]
-struct StringLengthError;
-
-#[derive(Debug, Serialize, Deserialize)]
-struct StringLengthArgs {
-    text: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct StringLengthTool;
-
-impl Tool for StringLengthTool {
-    const NAME: &'static str = "string_length";
-
-    type Error = StringLengthError;
-    type Args = StringLengthArgs;
-    type Output = usize;
-
-    async fn definition(&self, _prompt: String) -> ToolDefinition {
-        ToolDefinition {
-            name: Self::NAME.to_string(),
-            description: "Calculates the length of the input string".to_string(),
-            parameters: json!({
-                "type": "object",
-                "properties": {
-                    "text": {
-                        "type": "string",
-                        "description": "The text to calculate the length of"
-                    }
-                },
-                "required": ["text"]
-            }),
-        }
-    }
-
-    async fn call(&self, args: Self::Args) -> Result<Self::Output, Self::Error> {
-        Ok(args.text.len())
-    }
-}
+// Import from lib.rs
+use rig_playground::StringLengthTool;
 
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
