@@ -921,7 +921,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "562e6bd1c8366ac1cbe8a37057f530c40101eb8f4e98ce005be641c99d7331c8"
 dependencies = [
  "memchr",
- "tree-sitter 0.24.7",
+ "tree-sitter",
  "unicode-segmentation",
 ]
 
@@ -1852,16 +1852,6 @@ dependencies = [
 
 [[package]]
 name = "tree-sitter"
-version = "0.20.10"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e747b1f9b7b931ed39a548c1fae149101497de3c1fc8d9e18c62c1a66c683d3d"
-dependencies = [
- "cc",
- "regex",
-]
-
-[[package]]
-name = "tree-sitter"
 version = "0.24.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a5387dffa7ffc7d2dae12b50c6f7aab8ff79d6210147c6613561fc3d474c6f75"
@@ -1886,7 +1876,7 @@ dependencies = [
  "smallvec",
  "streaming-iterator",
  "thiserror",
- "tree-sitter 0.24.7",
+ "tree-sitter",
 ]
 
 [[package]]
@@ -1899,7 +1889,7 @@ dependencies = [
  "regex",
  "streaming-iterator",
  "thiserror",
- "tree-sitter 0.24.7",
+ "tree-sitter",
 ]
 
 [[package]]
@@ -1928,7 +1918,7 @@ dependencies = [
  "serde",
  "serde_json",
  "tempfile",
- "tree-sitter 0.24.7",
+ "tree-sitter",
  "tree-sitter-highlight",
  "tree-sitter-tags",
  "url",
@@ -1936,12 +1926,12 @@ dependencies = [
 
 [[package]]
 name = "tree-sitter-python"
-version = "0.20.3"
+version = "0.23.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f47ebd9cac632764b2f4389b08517bf2ef895431dd163eb562e3d2062cc23a14"
+checksum = "3d065aaa27f3aaceaf60c1f0e0ac09e1cb9eb8ed28e7bcdaa52129cffc7f4b04"
 dependencies = [
  "cc",
- "tree-sitter 0.20.10",
+ "tree-sitter-language",
 ]
 
 [[package]]
@@ -1949,7 +1939,7 @@ name = "tree-sitter-stack-graphs"
 version = "0.1.0"
 dependencies = [
  "stack-graphs",
- "tree-sitter 0.24.7",
+ "tree-sitter",
  "tree-sitter-python",
  "tree-sitter-stack-graphs 0.10.0",
 ]
@@ -1970,7 +1960,7 @@ dependencies = [
  "rust-ini",
  "stack-graphs",
  "thiserror",
- "tree-sitter 0.24.7",
+ "tree-sitter",
  "tree-sitter-graph",
  "tree-sitter-loader",
 ]
@@ -1985,7 +1975,7 @@ dependencies = [
  "regex",
  "streaming-iterator",
  "thiserror",
- "tree-sitter 0.24.7",
+ "tree-sitter",
 ]
 
 [[package]]

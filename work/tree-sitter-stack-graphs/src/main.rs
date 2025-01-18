@@ -1,6 +1,6 @@
 use tree_sitter_stack_graphs::{StackGraphLanguage, Variables, NoCancellation};
 use stack_graphs::graph::StackGraph;
-use tree_sitter_python;
+use tree_sitter_python::{self, language::LANGUAGE};
 
 // TSGルールの定義
 // 基本的なPythonのimport文とモジュール参照を解析するルール
@@ -45,7 +45,7 @@ print(sys.path)
     "#;
 
     // tree-sitter-pythonのLanguageを取得
-    let grammar = tree_sitter_python::language();
+    let grammar = LANGUAGE;
 
     // tree-sitter-stack-graphsのStackGraphLanguageを作成
     let mut language = StackGraphLanguage::from_str(grammar, STACK_GRAPH_RULES)?;
