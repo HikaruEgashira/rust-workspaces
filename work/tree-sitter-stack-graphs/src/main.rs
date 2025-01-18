@@ -1,6 +1,6 @@
 use tree_sitter_stack_graphs::{StackGraphLanguage, Variables, NoCancellation};
 use stack_graphs::graph::StackGraph;
-use tree_sitter_python::{self, language::LANGUAGE};
+use tree_sitter_python::LANGUAGE;
 
 // TSGルールの定義
 // 基本的なPythonのimport文とモジュール参照を解析するルール
