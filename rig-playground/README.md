@@ -19,10 +19,17 @@ Rigは、LLMを活用したアプリケーションを構築するためのRust�
 
 ```rust
 // OpenAIの場合
-let gpt4 = openai_client.model("gpt-4").build();
+let openai_client = openai::Client::from_env();
+let gpt4 = openai_client.model("gpt-4o-mini").build();
 let response = gpt4.prompt("Hello, GPT-4!").await?;
 
+// Anthropicの場合
+let anthropic_client = anthropic::Client::from_env();
+let claude = anthropic_client.model("claude-3-haiku-20240307").build();
+let response = claude.prompt("Hello, Claude!").await?;
+
 // Cohereの場合
+let cohere_client = cohere::Client::from_env();
 let command = cohere_client.model("command").build();
 let response = command.prompt("Hello, Cohere!").await?;
 ```
@@ -92,10 +99,18 @@ async fn main() -> Result<(), anyhow::Error> {
 
 このワークスペースには以下のサンプルが含まれています：
 
-1. `src/main.rs`: 基本的なLLM completion
+1. `src/main.rs`: OpenAIを使用した基本的なLLM completion
 2. `src/main_rag.rs`: RAGを使用した高度な例
 3. `src/main_tool.rs`: Tool機能の実装例
 4. `src/main_extractor.rs`: JSON構造体の抽出例
+
+各機能の特徴：
+- OpenAI: コスト効率の良いgpt-4o-miniモデルを使用
+- RAG: OpenAIのtext-embedding-3-smallを使用した効率的な埋め込み
+- Tool: カスタム機能の拡張が可能
+- Extractor: 構造化データの抽出をサポート
+
+注: 現在のバージョン（0.0.6）ではAnthropicのサポートは含まれていません。
 
 ## Tool機能
 
