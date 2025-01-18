@@ -170,3 +170,5 @@ let person = extractor.extract(text).await?;
 - 現在のバージョン（0.0.6）は開発中であり、将来的に破壊的な変更が含まれる可能性があります
 - APIキーの管理には十分注意してください
 - コスト効率を考慮し、適切なモデル（例：gpt-4o-mini）を選択してください
+- 現在のバージョン（0.0.6）のrig-coreでは [公式ドキュメント](https://docs.rs/rig-core/0.0.6/rig/providers/index.html) によると、OpenAIとCohereのみをサポートしています
+- Anthropic (Claude) のモデル名（例：`claude-3-5-sonnet-20241022`）は [Anthropicのドキュメント](https://docs.anthropic.com/claude/docs/models-overview) で確認できますが、現時点ではrig-coreでは使用できません
