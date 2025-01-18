@@ -1,6 +1,8 @@
-use tree_sitter_stack_graphs::{StackGraphLanguage, Variables, NoCancellation};
 use stack_graphs::graph::StackGraph;
 use tree_sitter_python::LANGUAGE;
+use tree_sitter_stack_graphs::{NoCancellation, StackGraphLanguage, Variables};
+
+mod dot_export;
 
 // TSGルールの定義
 // 基本的なPythonのimport文とモジュール参照を解析するルール
@@ -55,7 +57,7 @@ print(sys.path)
 
     // グローバル変数（ファイル名など）を設定
     let globals = Variables::new();
-    
+
     // スタックグラフの構築
     language.build_stack_graph_into(
         &mut stack_graph,
@@ -68,6 +70,10 @@ print(sys.path)
     // 生成されたグラフの情報を出力
     println!("Graph has {} nodes", stack_graph.iter_nodes().count());
     println!("Generated stack graph for Python code analysis");
-    
+
+    // DOT形式でグラフを出力
+    let dot_contents = dot_export::to_dot(&stack_graph);
+    println!("\nDOT representation:\n{}", dot_contents);
+
     Ok(())
 }
