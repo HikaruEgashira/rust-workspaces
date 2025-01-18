@@ -5,22 +5,21 @@ use tree_sitter_python::LANGUAGE;
 // TSGルールの定義
 // 基本的なPythonのimport文とモジュール参照を解析するルール
 const STACK_GRAPH_RULES: &str = r#"
-(module) @prog {
+(module) @__tsg__full_match {
     node module_scope
     attr (module_scope) type = "scope"
 
-    ; モジュールのインポート文を処理
+    ; Import statements
     (import_statement
         name: (dotted_name) @name) {
         node import_node
         attr (import_node) type = "pop_scoped_symbol"
         attr (import_node) symbol = (source-text @name)
         attr (import_node) is_definition
-        
         edge (module_scope) -> (import_node)
     }
 
-    ; モジュール属性アクセスを処理
+    ; Attribute access
     (attribute
         object: (identifier) @obj
         attribute: (identifier) @attr) {
@@ -31,7 +30,6 @@ const STACK_GRAPH_RULES: &str = r#"
         node attr_node
         attr (attr_node) type = "pop_scoped_symbol"
         attr (attr_node) symbol = (source-text @attr)
-        
         edge (ref_node) -> (attr_node)
     }
 }
@@ -48,7 +46,7 @@ print(sys.path)
     let grammar = LANGUAGE.into();
 
     // tree-sitter-stack-graphsのStackGraphLanguageを作成
-    let mut language = StackGraphLanguage::from_str(grammar, STACK_GRAPH_RULES)?;
+    let language = StackGraphLanguage::from_str(grammar, STACK_GRAPH_RULES)?;
 
     // StackGraphインスタンス生成
     let mut stack_graph = StackGraph::new();
