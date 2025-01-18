@@ -1,0 +1,11 @@
+[package]
+name = "rig-playground"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rig-core = "0.0.6"
+tokio = { version = "1.34.0", features = ["full"] }
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+schemars = "0.8"
