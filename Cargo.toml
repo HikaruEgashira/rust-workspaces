@@ -3,5 +3,6 @@ members = [
     "work/*",
     "kani-tutorial/*",
     "rig-playground",
+    "work/stack-graphs-example"
 ]
 resolver = "2"
