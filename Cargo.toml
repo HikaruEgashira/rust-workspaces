@@ -3,6 +3,13 @@ members = [
     "work/*",
     "kani-tutorial/*",
     "rig-playground",
-    "work/stack-graphs-example"
+    "work/stack-graphs-example",
+    "work/tree-sitter-stack-graphs"
 ]
 resolver = "2"
+
+[workspace.dependencies]
+tree-sitter = "=0.24.7"
+tree-sitter-stack-graphs = "=0.10.0"
+stack-graphs = "=0.14.1"
+tree-sitter-python = "=0.23.6"

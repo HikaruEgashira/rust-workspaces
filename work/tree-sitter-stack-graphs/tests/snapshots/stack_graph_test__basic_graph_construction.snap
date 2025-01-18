@@ -1,0 +1,10 @@
+---
+source: work/tree-sitter-stack-graphs/tests/stack_graph_test.rs
+expression: format_graph_info(&mut graph)
+---
+Total nodes: 3
+
+Nodes:
+- Node Handle { index: 1 }
+- Node Handle { index: 2 }
+- Node Handle { index: 3 }

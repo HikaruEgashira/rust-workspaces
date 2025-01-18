@@ -1,0 +1,14 @@
+[package]
+name = "tree-sitter-stack-graphs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tree-sitter-stack-graphs.workspace = true
+tree-sitter.workspace = true
+tree-sitter-python.workspace = true
+stack-graphs.workspace = true
+wyz = "0.5.1"
+
+[dev-dependencies]
+insta = "1.36.1"
