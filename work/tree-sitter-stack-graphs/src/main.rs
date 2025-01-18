@@ -5,7 +5,7 @@ use tree_sitter_python::LANGUAGE;
 // TSGルールの定義
 // 基本的なPythonのimport文とモジュール参照を解析するルール
 const STACK_GRAPH_RULES: &str = r#"
-(module) @mod @__tsg__full_match {
+(module) @__tsg__full_match {
     node root
     attr (root) type = "scope"
     attr (root) is_definition
