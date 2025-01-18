@@ -45,7 +45,7 @@ print(sys.path)
     "#;
 
     // tree-sitter-pythonのLanguageを取得
-    let grammar = LANGUAGE;
+    let grammar = LANGUAGE.into();
 
     // tree-sitter-stack-graphsのStackGraphLanguageを作成
     let mut language = StackGraphLanguage::from_str(grammar, STACK_GRAPH_RULES)?;
