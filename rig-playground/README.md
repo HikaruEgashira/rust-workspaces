@@ -23,11 +23,6 @@ let openai_client = openai::Client::from_env();
 let gpt4 = openai_client.model("gpt-4o-mini").build();
 let response = gpt4.prompt("Hello, GPT-4!").await?;
 
-// Anthropicの場合
-let anthropic_client = anthropic::Client::from_env();
-let claude = anthropic_client.model("claude-3-haiku-20240307").build();
-let response = claude.prompt("Hello, Claude!").await?;
-
 // Cohereの場合
 let cohere_client = cohere::Client::from_env();
 let command = cohere_client.model("command").build();
