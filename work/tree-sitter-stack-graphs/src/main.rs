@@ -6,19 +6,27 @@ use tree_sitter_python::LANGUAGE;
 // 基本的なPythonのimport文とモジュール参照を解析するルール
 const STACK_GRAPH_RULES: &str = r#"
 (module) @__tsg__full_match {
-    node root
-    attr (root) type = "scope"
-    attr (root) is_definition
+    node scope_node
+    attr (scope_node) type = "scope"
+    attr (scope_node) is_definition
 }
 
 (import_statement name: (dotted_name) @name) {
+    node scope_node
+    attr (scope_node) type = "scope"
+    attr (scope_node) is_definition
+
     node import_ref
     attr (import_ref) type = "pop_symbol"
     attr (import_ref) symbol = (source-text @name)
-    edge root -> import_ref
+    edge scope_node -> import_ref
 }
 
 (attribute object: (identifier) @obj attribute: (identifier) @attr) {
+    node scope_node
+    attr (scope_node) type = "scope"
+    attr (scope_node) is_definition
+
     node ref_node
     attr (ref_node) type = "push_symbol"
     attr (ref_node) symbol = (source-text @obj)
