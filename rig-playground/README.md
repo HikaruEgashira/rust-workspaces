@@ -94,6 +94,66 @@ async fn main() -> Result<(), anyhow::Error> {
 
 1. `src/main.rs`: 基本的なLLM completion
 2. `src/main_rag.rs`: RAGを使用した高度な例
+3. `src/main_tool.rs`: Tool機能の実装例
+4. `src/main_extractor.rs`: JSON構造体の抽出例
+
+## Tool機能
+
+RigのTool機能を使用すると、LLMエージェントに追加の機能を実装できます。以下は文字列の長さを計算するツールの例です：
+
+```rust
+use rig::tool::{Tool, ToolSet};
+
+// 文字列の長さを計算するツール
+struct StringLengthTool;
+
+impl Tool for StringLengthTool {
+    fn name(&self) -> &str {
+        "string_length_tool"
+    }
+
+    fn description(&self) -> &str {
+        "Calculates the length of the input string"
+    }
+
+    fn invoke(&self, input: &str) -> String {
+        let length = input.len();
+        format!("The length of the input string is: {}", length)
+    }
+}
+
+// ツールをAgentで使用
+let tool_set = ToolSet::new().with_tool(StringLengthTool);
+let agent = openai_client
+    .agent("gpt-4o-mini")
+    .with_tools(tool_set)
+    .build();
+```
+
+## JSON構造体の抽出
+
+rigライブラリは、LLMを使用してテキストから構造化データを抽出する機能を提供します：
+
+```rust
+use schemars::JsonSchema;
+use serde::{Deserialize, Serialize};
+
+// 抽出したい構造体の定義
+#[derive(Serialize, Deserialize, JsonSchema, Debug)]
+struct Person {
+    name: Option<String>,
+    age: Option<u8>,
+    occupation: Option<String>,
+}
+
+// Extractorの使用
+let extractor = openai_client
+    .extractor::<Person>("gpt-4o-mini")
+    .build();
+
+let text = "山田太郎さんは32歳のソフトウェアエンジニアです。";
+let person = extractor.extract(text).await?;
+```
 
 ## 注意事項
 
