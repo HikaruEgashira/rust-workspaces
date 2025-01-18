@@ -1985,6 +1985,7 @@ dependencies = [
  "tree-sitter",
  "tree-sitter-python",
  "tree-sitter-stack-graphs 0.10.0",
+ "wyz",
 ]
 
 [[package]]

@@ -29,6 +29,24 @@ cargo run
 
 ## 実装例
 
+### グラフ構築の基本
+
+tree-sitter-stack-graphsでは、以下の基本的なAPIを使用してグラフを構築します：
+
+```rust
+// グラフの初期化
+let mut graph = StackGraph::new();
+let file_id = graph.get_or_create_file("example.py");
+
+// シンボルの作成
+let sys_symbol = graph.add_symbol("sys");
+let path_symbol = graph.add_symbol("path");
+
+// スコープノードの作成
+let scope_id = NodeID::new_in_file(file_id, 1);
+let scope_node = graph.add_scope_node(scope_id, true);
+```
+
 ### Stack Graph Node Types
 
 tree-sitter-stack-graphsでは、以下のnode typeを使用してグラフを構築します：
@@ -38,6 +56,41 @@ tree-sitter-stack-graphsでは、以下のnode typeを使用してグラフを�
 - `pop_symbol` - シンボルをスタックからポップするnode
 - `push_scoped_symbol` - スコープ付きシンボルをプッシュするnode
 - `pop_scoped_symbol` - スコープ付きシンボルをポップするnode
+
+### グラフ操作のベストプラクティス
+
+1. シンボルの追加と参照
+   - `add_symbol` - 新しいシンボルをグラフに追加
+   - シンボルは一意に管理され、同じ名前のシンボルは同じIDを持ちます
+
+2. スコープノードの作成
+   - `NodeID::new_in_file` - ファイル内でのノードIDを生成
+   - `add_scope_node` - スコープノードを追加（第2引数のbooleanはexportableを示す）
+
+3. グラフの検査とデバッグ
+   - `iter_nodes()` - グラフ内のすべてのノードを走査
+   - ノードの数を確認する場合は `graph.iter_nodes().count()`
+   - `node_symbol(node)` - ノードに関連付けられたシンボルを取得（`add_symbol`で追加したシンボルとは異なる）
+   - `debug_info_for_node(node)` - ノードのデバッグ情報を取得（開発時のトラブルシューティングに有用）
+
+```rust
+// シンボルの取得と検査の例
+for node in graph.iter_nodes() {
+    // ノードのシンボルを取得
+    if let Some(symbol) = graph.node_symbol(node) {
+        println!("Node symbol: {:?}", symbol);
+    }
+    
+    // デバッグ情報の取得
+    if let Some(debug_info) = graph.debug_info_for_node(node) {
+        println!("Debug info: {:?}", debug_info);
+    }
+}
+```
+
+注意点：
+- `add_symbol`はグラフにシンボルを追加するのに対し、`node_symbol`は既存のノードからシンボルを取得します
+- デバッグ情報は開発時のみ使用し、本番環境では使用を避けることを推奨します
 
 ### TSG (Tree-Sitter Graph) Rules
 
