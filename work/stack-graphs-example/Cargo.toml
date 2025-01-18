@@ -1,0 +1,7 @@
+[package]
+name = "stack-graphs-example"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+stack-graphs = "0.14.1"
