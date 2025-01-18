@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "work/*",
-    "kani-tutorial/*", "rig-playground",
+    "kani-tutorial/*",
+    "rig-playground",
 ]
 resolver = "2"

@@ -8,7 +8,9 @@ use rig::{
 #[tokio::main]
 async fn main() -> Result<(), anyhow::Error> {
     let openai_client = Client::from_env();
-    let embedding_model = openai_client.embedding_model("text-embedding-ada-002");
+    // Note: embedding_model accepts a string literal as per rig's API design
+    // Using text-embedding-3-small for better cost efficiency and performance
+    let embedding_model = openai_client.embedding_model("text-embedding-3-small");
     let mut vector_store = InMemoryVectorStore::default();
 
     // シンプルなテキストを埋め込み
