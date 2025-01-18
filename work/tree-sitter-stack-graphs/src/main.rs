@@ -10,14 +10,17 @@ const STACK_GRAPH_RULES: &str = r#"
     attr (root) type = "scope"
     attr (root) is_definition
 
-    match import_statement {
+    (import_statement
+        name: (dotted_name) @name) {
         node import_ref
         attr (import_ref) type = "reference"
         attr (import_ref) symbol = (source-text @name)
         edge (root) -> (import_ref)
     }
 
-    match attribute {
+    (attribute
+        object: (identifier) @obj
+        attribute: (identifier) @attr) {
         node attr_ref
         attr (attr_ref) type = "reference"
         attr (attr_ref) symbol = (source-text @attr)
