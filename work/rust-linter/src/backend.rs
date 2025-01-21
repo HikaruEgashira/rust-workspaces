@@ -1,6 +1,7 @@
 use tower_lsp::jsonrpc::Result;
 use tower_lsp::lsp_types::*;
-use tower_lsp::{LanguageClient, LanguageServer};
+use tower_lsp::LanguageServer;
+use tower_lsp::client::LanguageClient;
 use serde_json::{json, Value};
 use log::error;
 

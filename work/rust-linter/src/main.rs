@@ -1,5 +1,6 @@
 use std::env;
-use tower_lsp::{LspService, Server, LanguageClient};
+use tower_lsp::{LspService, Server};
+use tower_lsp::client::LanguageClient;
 use log::info;
 use rust_linter::Backend;
 use reqwest::header::{HeaderMap, HeaderValue, AUTHORIZATION};
