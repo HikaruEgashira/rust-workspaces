@@ -1,7 +1,7 @@
 use tower_lsp::jsonrpc::Result;
 use tower_lsp::lsp_types::*;
 use tower_lsp::LanguageServer;
-use tower_lsp::LanguageClient;
+use tower_lsp::Client;
 use tokio::sync::mpsc;
 use async_trait::async_trait;
 
@@ -29,7 +29,7 @@ impl LanguageServer for TestClient {
 }
 
 #[async_trait]
-impl LanguageClient for TestClient {
+impl Client for TestClient {
     async fn show_message(&self, message: MessageType, msg: &str) -> Result<()> {
         let _ = self.tx.try_send(format!("{:?}: {}", message, msg));
         Ok(())
