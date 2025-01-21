@@ -76,7 +76,7 @@ mod common {
 
         let (test_client, rx) = TestClient::new();
         let backend = Backend {
-            client: Box::new(test_client) as Box<dyn Client>,
+            client: test_client,
             openai_client: openai_client.clone(),
         };
 

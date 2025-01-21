@@ -6,7 +6,7 @@ use log::error;
 
 #[derive(Debug)]
 pub struct Backend {
-    pub client: Box<dyn Client>,
+    pub client: Client,
     pub openai_client: reqwest::Client,
 }
 

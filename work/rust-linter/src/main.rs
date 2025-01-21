@@ -25,7 +25,7 @@ async fn main() {
     let stdout = tokio::io::stdout();
 
     let (service, socket) = LspService::new(|client| Backend {
-        client: Box::new(client) as Box<dyn Client>,
+        client,
         openai_client,
     });
 
