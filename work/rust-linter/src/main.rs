@@ -1,6 +1,5 @@
 use std::env;
-use tower_lsp::{LspService, Server};
-use tower_lsp::jsonrpc::Endpoint;
+use tower_lsp::{LspService, Server, Client};
 use log::info;
 use rust_linter::Backend;
 use reqwest::header::{HeaderMap, HeaderValue, AUTHORIZATION};
@@ -26,7 +25,7 @@ async fn main() {
     let stdout = tokio::io::stdout();
 
     let (service, socket) = LspService::new(|client| Backend {
-        client: Box::new(client) as Box<dyn Endpoint>,
+        client: Box::new(client) as Box<dyn Client>,
         openai_client,
     });
 
