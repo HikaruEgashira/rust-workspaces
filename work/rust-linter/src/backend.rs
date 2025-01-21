@@ -1,12 +1,13 @@
 use tower_lsp::jsonrpc::Result;
 use tower_lsp::lsp_types::*;
-use tower_lsp::{LanguageClient, LanguageServer};
+use tower_lsp::jsonrpc::client::Client;
+use tower_lsp::LanguageServer;
 use serde_json::{json, Value};
 use log::error;
 
 #[derive(Debug)]
 pub struct Backend {
-    pub client: Box<dyn LanguageClient>,
+    pub client: Box<dyn Client>,
     pub openai_client: reqwest::Client,
 }
 
