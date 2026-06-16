@@ -113,7 +113,7 @@ dependencies = [
  "funty",
  "radium",
  "tap",
- "wyz",
+ "wyz 0.5.1",
 ]
 
 [[package]]
@@ -1986,7 +1986,7 @@ dependencies = [
  "tree-sitter",
  "tree-sitter-python",
  "tree-sitter-stack-graphs 0.10.0",
- "wyz",
+ "wyz 0.6.1",
 ]
 
 [[package]]
@@ -2379,6 +2379,15 @@ name = "wyz"
 version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "05f360fc0b24296329c78fda852a1e9ae82de9cf7b27dae4b7f62f118f77b9ed"
+dependencies = [
+ "tap",
+]
+
+[[package]]
+name = "wyz"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4eee9a828e072dd4920c6ecddb1f693ff5660a8c4dfc1ab1fb8487dc69d021ea"
 dependencies = [
  "tap",
 ]
